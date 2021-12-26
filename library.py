@@ -7,13 +7,17 @@ class Library:
         self.database = []
 
     def addBook(self, book):
+        _id = self.database[-1].get_ID()
+        book.update_ID(_id + 1)
         self.database.append(book)
-        print("Dodano: ", book, " do bazy danych.")
+        # print("Dodano: ", book, " do bazy danych.")
 
     def removeBook(self, book):
+        _id = book.get_ID()
         if book in self.database:
             self.database.remove(book)
-            print("Usunieto: ", book, " z bazy danych.")
+        for i in range(_id-1, self.size()):
+            self.database[i].update_ID(self.database[i].get_ID()-1)
 
     def update_book_info(self, title, *args):
         book = self.find_book_by_title(title)
@@ -41,6 +45,9 @@ class Library:
         for i in self.database:
             print(repr(i))
     
+    def getAllBooks(self):
+        return self.database
+    
     def import_books_form_csv_file(self, file):
         csv_reader = csv.reader(file)
         for row in csv_reader:
@@ -66,7 +73,17 @@ class Library:
         for book in self.database:
             if book.get_title() == title:
                 return book
-            else:
-                return None
+            
+        return None
+
+    def find_book_by_ID(self, ID):
+        for book in self.database:
+            if book.get_ID() == int(ID):
+                return book
+        
+        return None
+
+    def size(self):
+        return len(self.database)
 
     

@@ -32,11 +32,17 @@ class Book:
     def get_authors_surname(self):
         return self.authors_surname
 
+    def get_author(self):
+        return str(self.authors_firstname + " " + self.authors_surname)
+
     # def get_publisher(self):
     #     return self.publisher
     
     # def get_date_of_publish(self):
     #     return self.date_of_publish
+
+    def update_ID(self, new_ID):
+        self.ID = new_ID
 
     def update_title(self, new_title):
         self.title = new_title
