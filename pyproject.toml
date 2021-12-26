@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "library"
+version = "0.1.0"
+description = ""
+authors = ["ArkoJano <arek0092@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pygame = "^2.1.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

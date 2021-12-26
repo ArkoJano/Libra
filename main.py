@@ -45,7 +45,7 @@ def print_add_book_menu():
     print("""        |   Podaj nazwisko autora: """, end="")
     authors_surname = input()
     
-
+W
 def choose_option(option):
     options = {
         1:print_add_book_menu()
