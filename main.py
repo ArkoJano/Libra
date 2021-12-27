@@ -4,7 +4,17 @@ import csv
 import os
 
 library = Library()
-# book = Book("Pan Tadeusz", "Adam", "Mickiewicz")
+des = """
+    MickiewiczMickiewiczMickiewiczMickiewicz
+    MickiewiczMickiewiczMickiewiczMickiewicz
+    MickiewiczMickiewiczMickiewiczMickiewicz
+    MickiewiczMickiewiczMickiewiczMickiewicz
+    MickiewiczMickiewiczMickiewiczMickiewicz
+    MickiewiczMickiewiczMickiewiczMickiewicz
+    MickiewiczMickiewiczMickiewiczMickiewicz
+    """
+book = Book("Pan Tadeusz", "Adam", "Mickiewicz", des)
+
 
 # library.printAllBooks()
 # library.addBook(book)
@@ -25,6 +35,12 @@ def go_on():
 
     input("""        |   Nacisnij enter klawisz alby kontynuowac...                      |
         +-------------------------------------------------------------------+""")
+
+def split_string_into_chunks(string):
+    """ Funkcja dzieli lancuchy znakowe na partie po 67 znakow """
+    lenght_of_chunk = 67
+    chunks = [string[i:i+lenght_of_chunk] for i in range(0, len(string), lenght_of_chunk)]
+    return chunks
 
 def print_main_menu():
     """ Funkcja wyswietla glowne menu programu """
@@ -103,6 +119,45 @@ def print_all_books():
         
     print("""        +-------------------------------------------------------------------+\n""", end="")
 
+def print_find_book_menu():
+    print("""
+        +-----------------------+ Wyszukaj ksiazke +------------------------+
+        """
+            , end="")
+
+    title = input("""|   Podaj tytul: """)
+    print("\r        +-------------------------------------------------------------------+")
+    book = library.find_book_by_title(title)
+    
+    cls()
+    if book != None:
+        print(
+        """\r
+        +-------------------------------------------------------------------+
+        |  ID  |           Tytul            |             Autor             |
+        +-------------------------------------------------------------------+"""
+            )
+        print(f"        |{book.get_ID():^6}|{book.get_title():<28}|{book.get_author():<31}|", end="")
+        print(
+            """
+        +--- Opis ----------------------------------------------------------+""")
+        description = book.get_description()
+        if len(description) > 67:
+            description = split_string_into_chunks(description)
+            for chunk in description:
+                print(f"        |{chunk:<67}|")
+        else:
+            print(f"        |{description[0]:<67}|")
+        print(
+        """        +-------------------------------------------------------------------+""")
+    else:
+        print(
+        """\r
+        +-------------------------------------------------------------------+
+        |  Nie ksiązki o podanym tytule                                     |
+        +-------------------------------------------------------------------+"""
+        )
+        
 def choose_option(option):
     """ Funkcja odpowiadajaca za wybor opcji z menu glownego """
 
@@ -111,6 +166,8 @@ def choose_option(option):
         print_add_book_menu()
     elif option == 2:
         print_delete_book_menu()
+    elif option == 3:
+        print_find_book_menu()
     elif option == 4:
         print_all_books()
     elif option == 8:

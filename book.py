@@ -4,11 +4,13 @@ class Book:
     _id = 1
     
     def __init__(self, title, 
-                authors_firstname, authors_surname):
+                authors_firstname, authors_surname,
+                description ):
         self.ID = Book._id
         self.title = title
         self.authors_firstname = authors_firstname
         self.authors_surname = authors_surname
+        self.description = description
         Book._id += 1
 
     def __str__(self) -> str:
@@ -34,6 +36,9 @@ class Book:
 
     def get_author(self):
         return str(self.authors_firstname + " " + self.authors_surname)
+
+    def get_description(self):
+        return self.description
 
     # def get_publisher(self):
     #     return self.publisher
@@ -62,4 +67,6 @@ class Book:
     # def update_publisher(self, new_publisher):
     #     self.publisher = new_publisher
 
-    
+    def update_description(self, new_description):
+        self.description = new_description
+            

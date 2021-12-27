@@ -8,7 +8,7 @@ class Library:
 
     def addBook(self, book):
         _id = self.database[-1].get_ID()
-        book.update_ID(_id + 1)
+        book.update_ID(_id+1)
         self.database.append(book)
         # print("Dodano: ", book, " do bazy danych.")
 
@@ -21,12 +21,6 @@ class Library:
 
     def update_book_info(self, title, *args):
         book = self.find_book_by_title(title)
-        menu = """" Którą kolumnę chcesz zaktualizować?
-                1. Tytuł
-                2. Imię autora
-                3. Nazwisko autora
-        """
-        print(menu, end="")
         option = input("Do zmiany: ")
         if option == 1:
             new_title = input("Podaj nowy tytuł: ")
@@ -51,10 +45,15 @@ class Library:
     def import_books_form_csv_file(self, file):
         csv_reader = csv.reader(file)
         for row in csv_reader:
-            splited = row[0].split(";")
-            if splited[0] != 'ID':
-                if splited[1] != "" or splited[2] != "":
-                    self.database.append(Book(splited[1], splited[2], splited[3]))
+            if len(row) != 0:
+                splited = row[0].split(";")
+                splited[4] = [splited[4]]
+                for i in range(1, len(row)):
+                    splited[4].append(row[i])
+                
+                if splited[0] != 'ID':
+                    if splited[1] != "" or splited[2] != "":
+                        self.database.append(Book(splited[1], splited[2], splited[3], splited[4]))
             
 
     def export_books_to_csv_file(self, file_name):
