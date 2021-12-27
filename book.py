@@ -12,6 +12,15 @@ class Book:
         self.authors_surname = authors_surname
         self.description = description
         Book._id += 1
+    def to_dict(self):
+        dict_book = {
+            "ID"                : self.ID,
+            "title"             : self.title,
+            "authors_firstname" : self.authors_firstname,
+            "authors_surname"   : self.authors_surname,
+            "description"       : self.description
+            }
+        return dict
 
     def __str__(self) -> str:
         return f"\"{self.title}\""
