@@ -12,15 +12,6 @@ class Book:
         self.authors_surname = authors_surname
         self.description = description
         Book._id += 1
-    def to_dict(self):
-        dict_book = {
-            "ID"                : self.ID,
-            "title"             : self.title,
-            "authors_firstname" : self.authors_firstname,
-            "authors_surname"   : self.authors_surname,
-            "description"       : self.description
-            }
-        return dict
 
     def __str__(self) -> str:
         return f"\"{self.title}\""
@@ -33,9 +24,6 @@ class Book:
     
     def get_title(self):
         return self.title
-    
-    # def get_side_title(self):
-    #     return self.side_title
 
     def get_authors_firstname(self):
         return self.authors_firstname
@@ -49,20 +37,11 @@ class Book:
     def get_description(self):
         return self.description
 
-    # def get_publisher(self):
-    #     return self.publisher
-    
-    # def get_date_of_publish(self):
-    #     return self.date_of_publish
-
     def update_ID(self, new_ID):
         self.ID = new_ID
 
     def update_title(self, new_title):
         self.title = new_title
-
-    # def update_side_title(self, new_side_title):
-    #     self.side_title = new_side_title
 
     def update_authors_firstname(self, new_firstname):
         self.authors_firstname = new_firstname

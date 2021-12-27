@@ -4,29 +4,11 @@ import csv
 import os
 
 library = Library()
-des = """
-    MickiewiczMickiewiczMickiewiczMickiewicz
-    MickiewiczMickiewiczMickiewiczMickiewicz
-    MickiewiczMickiewiczMickiewiczMickiewicz
-    MickiewiczMickiewiczMickiewiczMickiewicz
-    MickiewiczMickiewiczMickiewiczMickiewicz
-    MickiewiczMickiewiczMickiewiczMickiewicz
-    MickiewiczMickiewiczMickiewiczMickiewicz
-    """
-book = Book("Pan Tadeusz", "Adam", "Mickiewicz", des)
 
 
-# library.printAllBooks()
-# library.addBook(book)
-# library.printAllBooks()
-# print(library.find_book_by_title(book.get_title()))
-# library.removeBook(book)
-# library.printAllBooks()
-
-# csv_file = open('example_lib.csv')
-# library.import_books_form_csv_file(csv_file)
+library.import_books_form_csv_file("example_lib.csv")
 # csv_file.close()
-# # library.printAllBooks()
+# library.printAllBooks()
 
 # library.export_books_to_csv_file("exported.csv")
 
@@ -53,10 +35,9 @@ def print_main_menu():
         |   2. Usun ksiazke                                                 |
         |   3. Wyszukaj ksiazke w bibliotece                                |
         |   4. Wyswietl liste wszystkich ksiazek                            |
-        |   5.                                                              |
-        |   6. Importuj bilioteke                                           |
-        |   7. Eksportuj do pliku                                           |
-        |   8. Wyjdz                                                        |
+        |   5. Importuj bilioteke z pliku                                   |
+        |   6. Eksportuj biblioteke do pliku                                |
+        |   7. Wyjdz                                                        |
         +-------------------------------------------------------------------+
         """
         , end="\r", flush=True)
@@ -74,8 +55,13 @@ def print_add_book_menu():
     authors_surname = input()
     print("""        |   Podaj opis: """, end="")
     description = input()
-    library.addBook(Book(title, authors_firstname, authors_surname, description))
-    print("""        +--------------------+ Dodano ksiazke do bazy! +--------------------+\n""", end="")
+    result = int(library.addBook(Book(title, authors_firstname, authors_surname, description)))
+    if title == "":
+        print("""        +-------------+ Nie mozna dodac ksiazki bez tytulu! +---------------+\n""", end="")
+    elif result == 1:
+        print("""        +--------------------+ Dodano ksiazke do bazy! +--------------------+\n""", end="")
+    elif result == -1:
+        print("""        +-------------------+ Ksiazka jest juz w bazie! +-------------------+\n""", end="")
 
 
 def print_delete_book_menu():
@@ -85,12 +71,22 @@ def print_delete_book_menu():
         +-------------------------+ Usun ksiazke +--------------------------+
         |   1. Wybierz ksiazke po tytule                                    |
         |   2. Wyswietl liste i wybierz po ID                               |
+        |   3. Wroc do menu                                                 |
         +-------------------------------------------------------------------+
         """
         , end="\r", flush=True)
-    option = int(input("        |   Opcja: "))
+    option = 0
+    try:
+        option = int(input("        |   Opcja: "))
+    except ValueError:
+        print("Niepoprawna wartosc!")
     cls()
-    if option == 1:
+    if option == 0:
+        print("""        +-------------------------------------------------------------------+
+        | Niepoprawna wartosc!                                              |""")
+    elif option == 1:
+        print("""
+        +-------------------------+ Usun ksiazke +--------------------------+""")
         title = input("""        |   Podaj tytul: """)
         book = library.find_book_by_title(title)
         if book != None:
@@ -113,7 +109,8 @@ def print_delete_book_menu():
             print("""        +-------------------------------------------------------------------+
         | Nie ma takiej ksiazki w bazie!                                    |   
         +-------------------------------------------------------------------+\n""", end="")
-
+    elif option == 3:
+        main()
     else:
         print("        |   Niepoprawna opcja! ")
 
@@ -163,34 +160,44 @@ def print_find_book_menu():
             """
         +--- Opis ----------------------------------------------------------+""")
             description = book.get_description()
-            if len(description) > 67:
-                description = split_string_into_chunks(description)
-                for chunk in description:
-                    print(f"        |{chunk:<67}|")
+            if type(description) == type(list()):
+                description_string = ""
+                for i in description:
+                    description_string += str(i)
+            if len(description_string) > 67:
+                description_string = split_string_into_chunks(description_string)
+                for i in range(len(description_string)):
+                    if i != len(description_string)-1:
+                        print(f"        |{description_string[i]:<67}|")
+                    else:
+                        print(f"        |{description_string[i]:<67}|", end="")
+
             else:
-                print(f"        |{description[0]:<67}|")
+                print(f"        |{description_string:<67}|")
         
-                print(
+            print(
         """\r
         +-------------------------------------------------------------------+
-        | 1. Edytuj dane ksiązki | 2. Usun ksiazke z bazy | 8. Wyjdź do menu|
+        | 1. Edytuj dane ksiązki | 2. Usun ksiazke z bazy | 7. Wyjdź do menu|
         +-------------------------------------------------------------------+
         """, end="")
             try:
                 option = int(input("|   Opcja: "))
             except ValueError:
-                print("Niepoprawna wartosc!")
-         
+                print("""        +-------------------------------------------------------------------+
+        |   Niepoprawna wartosc!                                              |""")
+
             if option == 1:
                 print_update_book_menu(book)
             elif option == 2:
                 library.removeBook(book)
                 print("""        +--------------------+ Usunieto ksiazke z bazy! +-------------------+\n""", end="")
                 break
-            elif option == 8:
+            elif option == 7:
                 break
             else:
-                print("        |   Niepoprawna opcja")
+                print("""        +-------------------------------------------------------------------+
+        |   Niepoprawna wartosc!                                              |""")
 
         print("\r        +-------------------------------------------------------------------+")
 
@@ -210,15 +217,21 @@ def print_update_book_menu(book):
         |   2. Imie autora                                                  |
         |   3. Nazwisko autora                                              | 
         |   4. Opis                                                         |
+        |   5. Wroc                                                         |
         +-------------------------------------------------------------------+
         """
         , end="\r", flush=True)
+    option = 0
     try:
         option = int(input("        |   Co chcesz zedytowac?:  "))
     except ValueError:
-        print("Niepoprawna wartosc!")
-    
-    if option == 1:
+        print("""        +-------------------------------------------------------------------+
+        |   Niepoprawna wartosc!                                              |""")
+
+    if option == 0:
+        print("""        +-------------------------------------------------------------------+
+        |   Niepoprawna wartosc!                                              |""")
+    elif option == 1:
         new_title = input("        |   Podaj nowy tytuł: ")
         library.update_book_info(book, "title", new_title)
     elif option == 2:
@@ -238,7 +251,7 @@ def print_export_books_menu():
         +--------------------+ Eksportuj dane do pliku +--------------------+"""
     )
     try:
-        file_name = input("        |   Podaj nazwe pliku: ")
+        file_name = input("        |   Podaj nazwe pliku (bez rozszerzenia): ")
     except ValueError:
         print("Niepoprawna wartosc!")
     cls()
@@ -263,9 +276,21 @@ def print_export_books_menu():
         +-------------------------------------------------------------------+"""
         )
     elif option == 2: 
-        library.export_books_to_json_file(file_name)
-    elif option == 3: pass
-        # library.export_books_to_txt_file(file_name)
+        counter = library.export_books_to_json_file(file_name)
+        print(
+        f"""\r
+        +-------------------------------------------------------------------+
+        |  Ilosc eksportowanych ksiazek: {counter:<16}                   |
+        +-------------------------------------------------------------------+"""
+        )
+    elif option == 3: 
+        counter = library.export_books_to_txt_file(file_name)
+        print(
+        f"""\r
+        +-------------------------------------------------------------------+
+        |  Ilosc eksportowanych ksiazek: {counter:<16}                   |
+        +-------------------------------------------------------------------+"""
+        )
     else:
         print("        |   Niepoprawna opcja!") 
 
@@ -283,14 +308,28 @@ def print_import_books_menu():
     file_extension = file_name.split(".")[-1]
 
     if file_extension == "csv":
+        
         try:
-            library.import_books_form_csv_file(file_name)
+            counter = library.import_books_form_csv_file(file_name)
+            print(
+        f"""\r
+        +-------------------------------------------------------------------+
+        |  Ilosc importowanych ksiazek: {counter:<16}                    |
+        +-------------------------------------------------------------------+"""
+        )
         except FileNotFoundError:
             print("        |   Nieznaleziono takiego pliku!") 
-    elif file_extension == "json": pass
-        # library.export_books_to_json_file(file_name)
-    elif file_extension == "txt": pass
-        # library.export_books_to_txt_file(file_name)
+    elif file_extension == "json":
+        try:
+            counter = library.import_books_from_json_file(file_name)
+            print(
+        f"""\r
+        +-------------------------------------------------------------------+
+        |  Ilosc importowanych ksiazek: {counter:<16}                    |
+        +-------------------------------------------------------------------+"""
+        )
+        except FileNotFoundError:
+            print("        |   Nieznaleziono takiego pliku!")
     else:
         print("""        +---------------------+ Importuj dane z pliku +---------------------+
         |   Niepoprawne rozszerzenie!                                      |""") 
@@ -308,12 +347,10 @@ def choose_option(option):
     elif option == 4:
         print_all_books()
     elif option == 5:
-        pass
-    elif option == 6:
         print_import_books_menu()
-    elif option == 7:
+    elif option == 6:
         print_export_books_menu()
-    elif option == 8:
+    elif option == 7:
         exit()
     else:
         print("        |   Niepoprawna opcja!") 
@@ -322,13 +359,16 @@ def cls():
     """ Funkcja czyszczaca caly terminal """
     os.system('cls' if os.name=='nt' else 'clear')
 
-while True:
-    cls()
-    print_main_menu()
-    try:
-        option = int(input("        |   Opcja: "))
-    except ValueError:
-        print("Niepoprawna wartosc!")
-        continue
-    choose_option(option)
-    go_on()
+def main():
+    while True:
+        cls()
+        print_main_menu()
+        try:
+            option = int(input("        |   Opcja: "))
+        except ValueError:
+            print("Niepoprawna wartosc!")
+            continue
+        choose_option(option)
+        go_on()
+
+main()
