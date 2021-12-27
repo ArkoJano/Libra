@@ -26,11 +26,6 @@ class TestBook(unittest.TestCase):
         self.assertEqual(self.book.get_description(), self.description)
 
     def test_update_methods(self):
-        # self.title = "Pan Tadeusz"
-        # self.firstname = "Adam"
-        # self.surname = "Mickiewicz"
-        # self.description = "Ostatni zajazd na Litwie"
-        # self.book = Book(self.title, self.firstname , self.surname , self.description)
         
         self.title = "Lalka"
         self.firstname = "Bolseław"

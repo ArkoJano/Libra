@@ -6,6 +6,8 @@ class Book:
     def __init__(self, title, 
                 authors_firstname, authors_surname,
                 description ):
+        if title == "":
+            raise ValueError
         self.ID = Book._id
         self.title = title
         self.authors_firstname = authors_firstname
@@ -48,12 +50,6 @@ class Book:
 
     def update_authors_surname(self, new_surname):
         self.authors_surname = new_surname
-
-    # def update_date_of_publish(self, new_date):
-    #     self.date_of_publish = new_date
-    
-    # def update_publisher(self, new_publisher):
-    #     self.publisher = new_publisher
 
     def update_description(self, new_description):
         self.description = new_description
