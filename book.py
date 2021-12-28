@@ -6,7 +6,7 @@ class Book:
     def __init__(self, title, 
                 authors_firstname, authors_surname,
                 description ):
-        if title == "":
+        if len(title.replace(" ", "")) < 3:
             raise ValueError
         self.ID = Book._id
         self.title = title

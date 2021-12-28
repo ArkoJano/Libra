@@ -3,7 +3,12 @@ from book import Book
 
 class Library:
 
+    """ Klasa odpowiadajaca za cala funkcjonalnosc bazy danych """
+
     def __init__(self):
+
+        """ Konstruktor """
+        
         self.database = []
 
     def addBook(self, book):
@@ -12,7 +17,10 @@ class Library:
         
         if self.size() != 0:
             _id = self.database[-1].get_ID()
-            book.update_ID(_id+1)
+        if self.size() == 0:
+            _id = 0
+        book.update_ID(_id+1)
+
 
         is_not_in_database = True
         title = book.get_title()

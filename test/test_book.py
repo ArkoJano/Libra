@@ -13,9 +13,9 @@ class TestBook(unittest.TestCase):
     def test_constructor(self):
         with self.assertRaises(ValueError):
             self.book = Book("","","","")
+            book = Book("s","s","s",1)
+            book = Book("s","s","s","s")
     
-        book = Book("s","s","s","s")
-        book = Book("s","s","s",1)
 
     def test_get_methods(self):
         

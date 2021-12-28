@@ -1,6 +1,6 @@
 [
 {
-    "ID": 13,
+    "ID": 1,
     "title": "Pan Tadeusz",
     "authors_firstname": "Adam",
     "authors_surname": "Mickiewicz",
@@ -12,7 +12,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 14,
+    "ID": 2,
     "title": "Lalka",
     "authors_firstname": "Bolesław",
     "authors_surname": "Prus",
@@ -24,7 +24,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 15,
+    "ID": 3,
     "title": "Que Vadis",
     "authors_firstname": "Henryk",
     "authors_surname": "Sienkiewicz ",
@@ -36,7 +36,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 16,
+    "ID": 4,
     "title": "Przedwiośnie",
     "authors_firstname": "Stefan",
     "authors_surname": "Żeromski",
@@ -48,7 +48,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 17,
+    "ID": 5,
     "title": "Inny Świat",
     "authors_firstname": "Gustaw",
     "authors_surname": "Herling-Grudziński",
@@ -60,7 +60,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 18,
+    "ID": 6,
     "title": "Ziemia Obiecana",
     "authors_firstname": "Władysław",
     "authors_surname": "Reymont",
@@ -72,7 +72,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 19,
+    "ID": 7,
     "title": "Miazga",
     "authors_firstname": "Jerzy",
     "authors_surname": "Andrzejewski",
@@ -84,7 +84,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 20,
+    "ID": 8,
     "title": "Bramy raju",
     "authors_firstname": "Jerzy",
     "authors_surname": "Andrzejewski",
@@ -96,7 +96,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 21,
+    "ID": 9,
     "title": "Pożegnanie z Marią",
     "authors_firstname": "Tadeusz",
     "authors_surname": "Borkowski",
@@ -108,7 +108,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 22,
+    "ID": 10,
     "title": "Nadberezyńcy",
     "authors_firstname": "Florian",
     "authors_surname": "Czarnyszewicz",
@@ -120,7 +120,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 23,
+    "ID": 11,
     "title": "Wiersze",
     "authors_firstname": "Tadeusz",
     "authors_surname": "Gajcy",
@@ -132,7 +132,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 24,
+    "ID": 12,
     "title": "Ferdydurke",
     "authors_firstname": "Witold",
     "authors_surname": "Gombrowicz",
@@ -144,7 +144,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 25,
+    "ID": 13,
     "title": "Dziennik",
     "authors_firstname": "Witold",
     "authors_surname": "Gombrowicz",
@@ -156,7 +156,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 26,
+    "ID": 14,
     "title": "Ślub",
     "authors_firstname": "Witold",
     "authors_surname": "Gombrowicz",
@@ -168,7 +168,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 27,
+    "ID": 15,
     "title": "Trans-Atlantyk",
     "authors_firstname": "Witold",
     "authors_surname": "Gombrowicz",
@@ -180,7 +180,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 28,
+    "ID": 16,
     "title": "Dziennik pisany nocą",
     "authors_firstname": "Gustaw",
     "authors_surname": "Herling-Grudziński",
@@ -192,7 +192,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 29,
+    "ID": 17,
     "title": "Mała apokalipsa",
     "authors_firstname": "Tadeusz",
     "authors_surname": "Konwicki",
@@ -204,7 +204,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 30,
+    "ID": 18,
     "title": "Zdążyć przed Panem Bogiem",
     "authors_firstname": "Hanna",
     "authors_surname": "Krall",
@@ -216,7 +216,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 31,
+    "ID": 19,
     "title": "Solaris",
     "authors_firstname": "Stanisław",
     "authors_surname": "Lem",
@@ -228,7 +228,7 @@
         " sit amet faucibus lectus."
     ]
 },{
-    "ID": 32,
+    "ID": 20,
     "title": "Tango",
     "authors_firstname": "Sławomir",
     "authors_surname": "Mrożek",

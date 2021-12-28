@@ -6,7 +6,6 @@ authors = ["ArkoJano <arek0092@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pygame = "^2.1.1"
 
 [tool.poetry.dev-dependencies]
 

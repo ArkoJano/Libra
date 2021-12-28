@@ -18,7 +18,7 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(self.library.size(), 0)
         self.library.addBook(self.book)
         self.assertEqual(self.library.size(), 1)
-        self.book2 = Book("t", "", "", "")
+        self.book2 = Book("tdd", "", "", "")
         self.library.addBook(self.book2)
         self.assertEqual(self.library.size(), 2)
 
@@ -27,7 +27,7 @@ class TestLibrary(unittest.TestCase):
         self.library.removeBook(None)
         self.assertEqual(self.library.size(), 1)
 
-        self.finded_book = self.library.find_book_by_title("t")
+        self.finded_book = self.library.find_book_by_title("tdd")
 
         self.assertIs(self.finded_book, self.book2)
 
@@ -58,7 +58,7 @@ class TestLibrary(unittest.TestCase):
 
 
     def test_get_all_books(self):
-        self.book2 = Book("t", "", "", "")
+        self.book2 = Book("tdd", "", "", "")
         self.library.addBook(self.book)
         self.library.addBook(self.book2)
         self.assertEqual(self.library.getAllBooks(), [self.book, self.book2])

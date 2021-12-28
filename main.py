@@ -12,11 +12,8 @@ from views.import_books import print_import_books_menu
 from goon import go_on
 
 
-library.import_books_form_csv_file("example_lib.csv")
-# csv_file.close()
-# library.printAllBooks()
+# library.import_books_form_csv_file("example_lib.csv")
 
-# library.export_books_to_csv_file("exported.csv")
 
 
 def choose_option(option):
@@ -43,6 +40,10 @@ def choose_option(option):
 
 
 def main():
+
+    """ Funkcja odpowiadajaca za cala dzialanie calego programu """
+
+
     while True:
         cls()
         print_main_menu()
